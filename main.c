@@ -16,11 +16,11 @@ void state1_actions(){
     printf("\n in state1 actions \n");
 }
 
-state_t state2_actions(){
+void state2_actions(){
     printf("\n in state2 actions \n");
 }
 
-state_t state3_actions(){
+void state3_actions(){
     printf("\n in state3 actions \n");
 }
 
@@ -28,7 +28,7 @@ typedef struct ds_state {
     event_t event;
     state_t current_state;
     state_t next_state;
-    state_t (*state_method)();
+    void (*state_method)();
 }ds_state_t;
 
 ds_state_t state_mc[] = { 
@@ -40,7 +40,7 @@ ds_state_t state_mc[] = {
 void run_mc(event_t ev, state_t* st){
     if(state_mc[ev].current_state == *st){
         *st = state_mc[ev].next_state;
-        state_mc[ev].state_method(st);
+        state_mc[ev].state_method();
     }
 }
 
